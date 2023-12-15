@@ -64,5 +64,24 @@ class db
 
         return $navItems;
     }
+
+    public function insertFormData(string $name, string $email, string $subject, string $message): bool
+    {
+        $sql = "INSERT INTO contact (full_name, email, subject, msg) VALUES (:full_name, :email, :subject, :msg)";
+
+        try {
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':full_name', $name);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':subject', $subject);
+            $stmt->bindParam(':msg', $message);
+            $stmt->execute();
+
+            return true;
+        } catch (\PDOException $e) {
+            echo "Insertion failed: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 
