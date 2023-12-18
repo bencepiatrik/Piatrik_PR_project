@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: 127.0.0.1
--- Čas generovania: Po 18.Dec 2023, 11:03
+-- Čas generovania: Po 18.Dec 2023, 11:37
 -- Verzia serveru: 10.4.14-MariaDB
 -- Verzia PHP: 7.4.10
 
@@ -215,7 +215,7 @@ ALTER TABLE `nav`
 -- AUTO_INCREMENT pre tabuľku `products`
 --
 ALTER TABLE `products`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pre tabuľku `services`
