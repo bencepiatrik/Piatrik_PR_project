@@ -9,9 +9,7 @@ $db = new db();
 $siteData->activePage = isset($siteData->activePage) ? $siteData->activePage : 'Home';
 ?>
 
-
 <link rel="stylesheet" href="assets/css/login.css">
-
 
 <header class="">
       <nav class="navbar navbar-expand-lg">
@@ -41,6 +39,19 @@ $siteData->activePage = isset($siteData->activePage) ? $siteData->activePage : '
         <img src="assets\images\user.svg" alt="Profile Icon" id="profile-icon">
       </div>
 
-      <?php include 'login.php'; ?>
+    <div id="login-form" style="display: none;">
+        <span id="close-icon">&times;</span>
+        <form action="parts/login.php" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
 </header>
+
+
