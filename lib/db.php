@@ -67,7 +67,7 @@ class db
 
     public  function getLatestItems(): array
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products ORDER BY date DESC LIMIT 3";
         $query = $this->connection->query($sql);
         $data = $query->fetchAll(\PDO::FETCH_ASSOC);
         $latestItems = [];
@@ -87,6 +87,30 @@ class db
             ];
         }
         return $latestItems;
+    }
+
+    public  function getProducss(): array
+    {
+        $sql = "SELECT * FROM products";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $products = [];
+
+        foreach ($data as $item) {
+            $products[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'properties' => $item['properties'],
+                'stars' => $item['stars'],
+                'img_src' => $item['img_src'],
+                'featured' => $item['featured'],
+                'flash_deal' => $item['flash_deal'],
+                'last_minute' => $item['last_minute'],
+                'date' => $item['date']
+            ];
+        }
+        return $products;
     }
 
     public function insertFormData(string $name, string $email, string $subject, string $message): bool
