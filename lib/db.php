@@ -89,7 +89,7 @@ class db
         return $latestItems;
     }
 
-    public  function getProducss(): array
+    public function getProducss(): array
     {
         $sql = "SELECT * FROM products";
         $query = $this->connection->query($sql);
@@ -111,6 +111,44 @@ class db
             ];
         }
         return $products;
+    }
+    public function addProduct($name, $price, $properties, $stars, $img_src, $featured, $flashDeal, $lastMinute)
+    {
+        try {
+            $sql = "INSERT INTO products (name, price, properties, stars, img_src, featured, flash_deal, last_minute) 
+                    VALUES (:name, :price, :properties, :stars, :img_src, :featured, :flashDeal, :lastMinute)";
+
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':properties', $properties);
+            $stmt->bindParam(':stars', $stars);
+            $stmt->bindParam(':img_src', $img_src);
+            $stmt->bindParam(':featured', $featured, \PDO::PARAM_INT);
+            $stmt->bindParam(':flashDeal', $flashDeal, \PDO::PARAM_INT);
+            $stmt->bindParam(':lastMinute', $lastMinute, \PDO::PARAM_INT);
+
+            $stmt->execute();
+
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+    public function deleteProduct($productId)
+    {
+        try {
+            $sql = "DELETE FROM products WHERE id = :productId";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindParam(':productId', $productId, \PDO::PARAM_INT);
+            $stmt->execute();
+
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
     }
 
     public function getTeam(): array
