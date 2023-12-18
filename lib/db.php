@@ -151,6 +151,62 @@ class db
         }
     }
 
+    public function getProductById($productId)
+    {
+        $sql = "SELECT * FROM products WHERE id = :productId";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':productId', $productId, \PDO::PARAM_INT);
+        $stmt->execute();
+
+        $data = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        if ($data === false) {
+            return null;
+        }
+        return [
+            'id' => $data['id'],
+            'name' => $data['name'],
+            'price' => $data['price'],
+            'properties' => $data['properties'],
+            'stars' => $data['stars'],
+            'img_src' => $data['img_src'],
+            'featured' => $data['featured'],
+            'flash_deal' => $data['flash_deal'],
+            'last_minute' => $data['last_minute'],
+            'date' => $data['date']
+        ];
+
+    }
+
+    public function saveEdit($productId, $name, $price, $properties, $stars, $imgSrc, $featured, $flashDeal, $lastMinute) {
+        $sql = "UPDATE products 
+            SET 
+                name = :name,
+                price = :price,
+                properties = :properties,
+                stars = :stars,
+                img_src = :imgSrc,
+                featured = :featured,
+                flash_deal = :flashDeal,
+                last_minute = :lastMinute
+            WHERE 
+                id = :productId";
+
+        $stmt = $this->connection->prepare($sql);
+
+        $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+        $stmt->bindParam(':price', $price, \PDO::PARAM_STR);
+        $stmt->bindParam(':properties', $properties, \PDO::PARAM_STR);
+        $stmt->bindParam(':stars', $stars, \PDO::PARAM_INT);
+        $stmt->bindParam(':imgSrc', $imgSrc, \PDO::PARAM_STR);
+        $stmt->bindParam(':featured', $featured, \PDO::PARAM_INT);
+        $stmt->bindParam(':flashDeal', $flashDeal, \PDO::PARAM_INT);
+        $stmt->bindParam(':lastMinute', $lastMinute, \PDO::PARAM_INT);
+        $stmt->bindParam(':productId', $productId, \PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
+
     public function getTeam(): array
     {
         $sql = "SELECT * FROM team";

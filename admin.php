@@ -30,6 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: admin.php");
         exit();
+    } elseif (isset($_POST["editProduct"])) {
+        $productId = $_POST["productId"];
+        $productToEdit = $db->getProductById($productId);
+        include "./parts/editForm.php";
+        exit();
     }
 }
 ?>
@@ -72,7 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td><?php echo $product['flash_deal']; ?></td>
                 <td><?php echo $product['last_minute']; ?></td>
                 <td>
-                    <form method="post" action="admin.php">
+                    <form method="post" action="admin.php" style="display: inline-block;">
+                        <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
+                        <button type="submit" name="editProduct" class="btn btn-primary" onclick="toggleEditForm()">Edit</button>
+                    </form>
+                    <form method="post" action="admin.php" style="display: inline-block;">
                         <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
                         <button type="submit" name="deleteProduct" class="btn btn-danger">Delete</button>
                     </form>
@@ -83,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </table>
 
     <form method="post" action="admin.php" class="mt-4">
-        <h2>Add New Product</h2>
+        <h2>Pridat novy produkt</h2>
         <div class="mb-3">
             <label for="newProductName" class="form-label">Name:</label>
             <input type="text" name="newProductName" class="form-control" required>
@@ -118,7 +127,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <button type="submit" name="addProduct" class="btn btn-primary">Add Product</button>
     </form>
-</div>
+
+    <script src="assets/js/admin.js"></script>
 
 </body>
 </html>
