@@ -1,11 +1,84 @@
 <?php
-if (!class_exists('FS\lib\db')) {
-    include "lib/db.php";
+class editDb
+{
+    private $host = "localhost";
+    private $port = 3306;
+    private $username = "root";
+    private $password = "";
+    private $dbName = "sixteen";
+    private \PDO $connection;
+
+    public function __construct(
+        string $host = "",
+        int $port = 3306,
+        string $username = "",
+        string $password = "",
+        string $dbName = ""
+    )
+    {
+        if (!empty($host)) {
+            $this->host = $host;
+        }
+
+        if (!empty($port)) {
+            $this->port = $port;
+        }
+
+        if (!empty($username)) {
+            $this->username = $username;
+        }
+
+        if (!empty($password)) {
+            $this->password = $password;
+        }
+
+        if (!empty($dbName)) {
+            $this->dbName = $dbName;
+        }
+
+        try {
+            $this->connection = new \PDO(
+                "mysql:host=$this->host;dbname=$this->dbName;charset=utf8mb4",
+                $this->username,
+                $this->password
+            );
+        } catch (\PDOException $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
+    public function saveEdit($productId, $name, $price, $properties, $stars, $imgSrc, $featured, $flashDeal, $lastMinute)
+    {
+        $sql = "UPDATE products 
+            SET 
+                name = :name,
+                price = :price,
+                properties = :properties,
+                stars = :stars,
+                img_src = :imgSrc,
+                featured = :featured,
+                flash_deal = :flashDeal,
+                last_minute = :lastMinute
+            WHERE 
+                id = :productId";
+
+        $stmt = $this->connection->prepare($sql);
+
+        $stmt->bindParam(':name', $name, \PDO::PARAM_STR);
+        $stmt->bindParam(':price', $price, \PDO::PARAM_STR);
+        $stmt->bindParam(':properties', $properties, \PDO::PARAM_STR);
+        $stmt->bindParam(':stars', $stars, \PDO::PARAM_INT);
+        $stmt->bindParam(':imgSrc', $imgSrc, \PDO::PARAM_STR);
+        $stmt->bindParam(':featured', $featured, \PDO::PARAM_INT);
+        $stmt->bindParam(':flashDeal', $flashDeal, \PDO::PARAM_INT);
+        $stmt->bindParam(':lastMinute', $lastMinute, \PDO::PARAM_INT);
+        $stmt->bindParam(':productId', $productId, \PDO::PARAM_INT);
+
+        $stmt->execute();
+    }
 }
 
-use FS\lib\db as myDb;
-
-$db = new myDb();
+$db = new editDb();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["saveEdit"])) {
@@ -21,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $db->saveEdit($productId, $editedProductName, $editedProductPrice, $editedProductProperties, $editedProductStars, $editedProductImgSrc, $editedProductFeatured, $editedProductFlashDeal, $editedProductLastMinute);
 
-        //header("Location: admin.php");
+        header("Location: http://localhost/Piatrik_pr/admin.php");
         exit();
     }
 }

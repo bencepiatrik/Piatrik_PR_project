@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <div class="container">
-    <h1 class="mt-4">Admin Panel</h1>
+    <h1 class="mt-4">Dashboard</h1>
     <table class="table table-bordered mt-4">
         <thead class="thead-light">
         <tr>
@@ -62,7 +62,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th>Featured</th>
             <th>Flash Deal</th>
             <th>Last Minute</th>
-            <th>Action</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -81,7 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
                         <button type="submit" name="editProduct" class="btn btn-primary" onclick="toggleEditForm()">Edit</button>
                     </form>
-                    <form method="post" action="admin.php" style="display: inline-block;">
+                </td>
+                <td>
+                <form method="post" action="admin.php" style="display: inline-block;">
                         <input type="hidden" name="productId" value="<?php echo $product['id']; ?>">
                         <button type="submit" name="deleteProduct" class="btn btn-danger">Delete</button>
                     </form>
