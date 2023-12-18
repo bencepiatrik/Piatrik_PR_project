@@ -335,6 +335,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
     <!-- Additional Scripts -->
+    <script src="assets/js/login.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>
     <script src="assets/js/slick.js"></script>

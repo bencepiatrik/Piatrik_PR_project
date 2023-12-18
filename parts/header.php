@@ -9,6 +9,10 @@ $db = new db();
 $siteData->activePage = isset($siteData->activePage) ? $siteData->activePage : 'Home';
 ?>
 
+
+<link rel="stylesheet" href="assets/css/login.css">
+
+
 <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -32,4 +36,11 @@ $siteData->activePage = isset($siteData->activePage) ? $siteData->activePage : '
           </div>
         </div>
       </nav>
-    </header>
+
+      <div class="profile-icon-container">
+        <img src="assets\images\user.svg" alt="Profile Icon" id="profile-icon">
+      </div>
+
+      <?php include 'login.php'; ?>
+
+</header>

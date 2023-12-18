@@ -113,6 +113,23 @@ class db
         return $products;
     }
 
+    public function checkUser($username, $password): bool
+    {
+        $username = $this->connection->quote($username);
+        $password = $this->connection->quote($password);
+
+        $sql = "SELECT COUNT(*) as count FROM admin WHERE username = $username AND password = $password";
+        $query = $this->connection->query($sql);
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
+
+        if ($result['count'] == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
     public function insertFormData(string $name, string $email, string $subject, string $message): bool
     {
         $sql = "INSERT INTO contact (full_name, email, subject, msg) VALUES (:full_name, :email, :subject, :msg)";

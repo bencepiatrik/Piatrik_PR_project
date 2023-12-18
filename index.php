@@ -26,6 +26,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
+
   </head>
 
   <body>
@@ -144,6 +145,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
 
     <!-- Additional Scripts -->
+    <script src="assets/js/login.js"></script>
     <script src="assets/js/custom.js"></script>
     <script src="assets/js/owl.js"></script>
     <script src="assets/js/slick.js"></script>
