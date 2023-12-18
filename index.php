@@ -76,6 +76,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     </div>
     <!-- Banner Ends Here -->
 
+    <!--
     <div class="latest-products">
       <div class="container">
         <div class="row">
@@ -196,6 +197,11 @@ https://templatemo.com/tm-546-sixteen-clothing
         </div>
       </div>
     </div>
+    -->
+
+    <?php
+    include_once "parts/latest_products.php";
+    ?>
 
     <div class="best-features">
       <div class="container">

@@ -65,6 +65,30 @@ class db
         return $navItems;
     }
 
+    public  function getLatestItems(): array
+    {
+        $sql = "SELECT * FROM products";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $latestItems = [];
+
+        foreach ($data as $item) {
+            $latestItems[] = [
+                'id' => $item['id'],
+                'name' => $item['name'],
+                'price' => $item['price'],
+                'properties' => $item['properties'],
+                'stars' => $item['stars'],
+                'img_src' => $item['img_src'],
+                'featured' => $item['featured'],
+                'flash_deal' => $item['flash_deal'],
+                'last_minute' => $item['last_minute'],
+                'date' => $item['date']
+            ];
+        }
+        return $latestItems;
+    }
+
     public function insertFormData(string $name, string $email, string $subject, string $message): bool
     {
         $sql = "INSERT INTO contact (full_name, email, subject, msg) VALUES (:full_name, :email, :subject, :msg)";
