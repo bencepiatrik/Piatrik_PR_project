@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hostiteľ: 127.0.0.1
--- Čas generovania: Po 18.Dec 2023, 11:37
+-- Čas generovania: Po 18.Dec 2023, 12:59
 -- Verzia serveru: 10.4.14-MariaDB
 -- Verzia PHP: 7.4.10
 
@@ -53,14 +53,6 @@ CREATE TABLE `contact` (
                            `msg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Sťahujem dáta pre tabuľku `contact`
---
-
-INSERT INTO `contact` (`full_name`, `email`, `subject`, `msg`) VALUES
-                                                                   ('asd', 'asd', 'asd', 'asd'),
-                                                                   ('helo', 'asd', 'fasz ', 'aaaaa');
-
 -- --------------------------------------------------------
 
 --
@@ -108,11 +100,9 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `name`, `price`, `properties`, `stars`, `img_src`, `featured`, `flash_deal`, `last_minute`, `date`) VALUES
                                                                                                                                       (1, 'Hiking Shoes', '39.99', 'Durable, grippy hiking shoes for superior traction and comfort on rugged trails. Ready for any adventure.', 4, 'assets/images/product_01.jpg', 1, 0, 0, '2023-12-10 20:28:44'),
-                                                                                                                                      (2, 'Knitted Wool Cap', '9.99', 'Cozy wool hat, providing warmth and style for chilly days with a touch of comfort and fashion.', 3, 'assets/images/product_02.jpg', 0, 0, 0, '2023-12-10 20:39:51'),
-                                                                                                                                      (3, 'Headscarf', '15.99', 'Elegant headscarf offering style and versatility, perfect for adding a touch of flair to any outfit.', 5, 'assets/images/product_03.jpg', 0, 1, 0, '2023-12-10 20:31:12'),
                                                                                                                                       (4, 'Snowmen', '24.99', 'Adorable snowmen plushies, soft and cuddly, bring winter joy with their charming smiles and warmth.', 4, 'assets/images/product_04.jpg\r\n', 0, 0, 1, '2023-12-18 08:06:35'),
                                                                                                                                       (5, 'Cozy grey/blue sweater', '39.99', 'An essential for colder days. Its soft knit and versatile hues offer both comfort and timeless style, effortlessly elevating your winter wardrobe.', 4, 'assets/images/product_05.jpg', 1, 0, 0, '2023-12-18 08:06:35'),
-                                                                                                                                      (6, 'Xmas decor', '9.99', 'Charming snowman figures and festive characters, crafted with love, adding personalized warmth to your tree.\r\n\r\n\r\n\r\n\r\n\r\n', 3, 'assets/images/product_01.jpg', 0, 0, 0, '2023-12-18 08:09:40');
+                                                                                                                                      (6, 'Xmas decor', '9.99', 'Charming snowman figures and festive characters, crafted with love, adding personalized warmth to your tree.', 3, 'assets/images/product_06.jpg', 1, 1, 1, '2023-12-18 08:09:40');
 
 -- --------------------------------------------------------
 
