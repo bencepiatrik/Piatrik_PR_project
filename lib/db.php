@@ -130,6 +130,21 @@ class db
         }
         return $team;
     }
+    public function getServices(): array
+    {
+        $sql = "SELECT * FROM services";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $services = [];
+
+        foreach ($data as $item) {
+            $services[] = [
+                'name' => $item['name'],
+                'description' => $item['description']
+            ];
+        }
+        return $services;
+    }
 
     public function checkUser($username, $password): bool
     {
