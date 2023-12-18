@@ -113,6 +113,24 @@ class db
         return $products;
     }
 
+    public function getTeam(): array
+    {
+        $sql = "SELECT * FROM team";
+        $query = $this->connection->query($sql);
+        $data = $query->fetchAll(\PDO::FETCH_ASSOC);
+        $team = [];
+
+        foreach ($data as $item) {
+            $team[] = [
+                'full_name' => $item['full_name'],
+                'position' => $item['position'],
+                'description' => $item['description'],
+                'img_src' => $item['img_src']
+            ];
+        }
+        return $team;
+    }
+
     public function checkUser($username, $password): bool
     {
         $username = $this->connection->quote($username);

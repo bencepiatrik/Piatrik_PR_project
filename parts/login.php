@@ -31,6 +31,6 @@ $db = new db();
      }
 
  } else {
-     echo "Something went wrong";
+     echo "";
  }
 ?>
